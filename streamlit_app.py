@@ -4,14 +4,14 @@ from llama_index.llms import OpenAI
 import openai
 from llama_index import SimpleDirectoryReader
 
-st.set_page_config(page_title="Biology Teachers Assistant", page_icon="🧬", layout="centered", initial_sidebar_state="auto", menu_items=None)
+st.set_page_config(page_title="Digital Society Teachers Assistant", page_icon="🧬", layout="centered", initial_sidebar_state="auto", menu_items=None)
 openai.api_key = st.secrets.openai_key
-st.title("Biology Teachers AI Assistant")
+st.title("Digital Society Teachers AI Assistant")
 st.info("More features are coming soon, stay tuned...", icon="📃")
          
 if "messages" not in st.session_state.keys(): # Initialize the chat messages history
     st.session_state.messages = [
-        {"role": "assistant", "content": "Ask me a question about any Biology related query"}
+        {"role": "assistant", "content": "Ask me a question about any Digital Society related query"}
     ]
 
 @st.cache_resource(show_spinner=False)
@@ -19,7 +19,7 @@ def load_data():
     with st.spinner(text="Loading hang tight! This should take 1-2 minutes."):
         reader = SimpleDirectoryReader(input_dir="./data", recursive=True)
         docs = reader.load_data()
-        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-4", temperature=0.1, system_prompt="You are the IB Biology teacher's assistant. You should answer the students' questions based on the data that you have. If a question is not relevant to Biology, request the student to ask a relevant question. If you do not know the answer, request the student to ask their Biology teacher. Keep your answers technical and based on facts – do not hallucinate features."))
+        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-4", temperature=0.1, system_prompt="You are the IB Digital Society teacher's assistant. You should answer the students' questions based on the data that you have. If a question is not relevant to Digital Society, request the student to ask a relevant question. If you do not know the answer, request the student to ask their Digital Society teacher. Keep your answers technical and based on facts – do not hallucinate features."))
         index = VectorStoreIndex.from_documents(docs, service_context=service_context)
         return index
 
