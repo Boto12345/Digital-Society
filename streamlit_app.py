@@ -1,7 +1,6 @@
 import streamlit as st
 from llama_index import VectorStoreIndex, ServiceContext, Document
 from llama_index.llms import OpenAI
-pip install google-generativeai
 from google.generativeai import GenerativeAiClient
 import openai
 from llama_index import SimpleDirectoryReader
