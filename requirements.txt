@@ -1,6 +1,6 @@
 streamlit
 openai
-llama_index
+llama-index
 nltk
 pypdf
 google-generativeai
