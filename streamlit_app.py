@@ -6,7 +6,8 @@ import openai
 from llama_index import SimpleDirectoryReader
 
 st.set_page_config(page_title="Digital Society Teachers Assistant", page_icon="", layout="centered", initial_sidebar_state="auto", menu_items=None)
-openai.api_key = st.secrets.openai_key
+#openai.api_key = st.secrets.openai_key
+client = GenerativeAiClient(api_key=st.secrets.gemini_key)
 st.title("Digital Society Teachers AI Assistant")
 st.info("Made by Abhyas Manne and Naren Ramakrishnan", icon="📃")
          
@@ -20,7 +21,7 @@ def load_data():
     with st.spinner(text="Loading hang tight! This should take 1-2 minutes."):
         reader = SimpleDirectoryReader(input_dir="./data", recursive=True)
         docs = reader.load_data()
-        service_context = ServiceContext.from_defaults(llm=Gemini(model="bard-large", temperature=0.1, system_prompt="You are the IB Digital Society teacher's assistant. You should answer the students' questions based on the data that you have. If a student requests you to revise a specific topic, you should be able to display the important contents of the chapter in bulletin points. If a question is not relevant to Digital Society, request the student to ask a relevant question. If you do not know the answer, request the student to ask their Digital Society teacher. Keep your answers technical and based on facts – do not hallucinate features."))
+        service_context = ServiceContext.from_defaults(llm=Gemini(model="bard-large", temperature=0.1, system_prompt="You are the IB Digital Society teacher's assistant. You should answer the students' questions based on the data that you have. If a student requests you to revise a specific topic, you should be able to display the important contents of the chapter in bulletin points. If a question is not relevant to Digital Society, request the student to ask a relevant question. If you do not know the answer, request the student to ask their Digital Society teacher. Keep your answers technical and based on facts – do not hallucinate features.", client=client))
         index = VectorStoreIndex.from_documents(docs, service_context=service_context)
         return index
 
