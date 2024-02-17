@@ -3,7 +3,7 @@ import streamlit as st
 #from llama_index.llms import OpenAI
 from google.generativeai import GenerativeAiClient
 #import openai
-from llama_index import SimpleDirectoryReader
+#from llama_index import SimpleDirectoryReader
 
 st.set_page_config(page_title="Digital Society Teachers Assistant", page_icon="", layout="centered", initial_sidebar_state="auto", menu_items=None)
 #openai.api_key = st.secrets.openai_key
